@@ -27,7 +27,12 @@ const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://myt-sus-rs-lang.netlify.app'
+  })
+);
 app.use(express.json());
 
 app.use('/files', express.static(path.join(__dirname, '../files')));
